@@ -1,0 +1,146 @@
+{% extends "Media/layout2.html" %}
+
+{% load static %}
+
+{% block title %}
+    Sign Up | Media
+{% endblock %}
+
+
+{% block body %}
+    <div class="flex w-screen h-screen justify-center items-center bg-gray-100">
+        <div class="w-full max-w-4xl p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
+            <div class="text-[40px] mb-6 font-bold text-[#01dd73] flex flex-row justify-center items-center">
+                <img src="{% static 'Media/Images/logo_icon.png' %}" class="h-[80px] -ml-4"> Sign Up
+            </div>
+            <form method="post" class="space-y-6" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="flex flex-row justify-between items-center gap-3">    
+                <div class="mb-2 w-full">
+                    {{ form.firstname }}
+                    {% if form.firstname.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.firstname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2 w-full">
+                    {{ form.lastname }}
+                    {% if form.lastname.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.lastname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+                <div class="mb-2">
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2">
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.email.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2">
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.password.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2">
+                    {{ form.confirmation }}
+                    {% if form.confirmation.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.confirmation.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="flex flex-row justify-between items-center gap-3">    
+                <div class="mb-2 w-full">
+                    <label for="{{ form.profile.id_for_label }}" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                    {{ form.profile }}
+                    {% if form.profile.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.profile.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2 w-full">
+                    <label for="{{ form.cover.id_for_label }}" class="block text-sm font-medium text-gray-700">Cover Picture</label>
+                    {{ form.cover }}
+                    {% if form.cover.errors %}
+                        <ul class="text-red-500 text-xs mt-1">
+                            {% for error in form.cover.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <input class="w-[95%] mt-2 py-2 px-4 bg-[#4CAF50] text-white rounded-md cursor-pointer disabled:bg-opacity-80" type="submit" value="Sign Up">
+                </div>
+            </form>
+            <div class="text-center mt-4 text-gray-600">
+                Already have an account?&nbsp;&nbsp;<a href="{% url 'login' %}" class="text-blue-500 hover:text-blue-700">Log in</a>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const formInputs = document.querySelectorAll(".inp");
+        
+                formInputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        const username = document.querySelector('.usrnm').value.length;
+                        const password = document.querySelector('.pswd').value.length;
+                        const confirmPassword = document.querySelector('.confirm-pswd').value.length;
+        
+                        if (username === 0 || password === 0 || confirmPassword === 0) {
+                            document.querySelector('input[type="submit"]').disabled = true;
+                        } else {
+                            const passwordMatch = document.querySelector('.pswd').value === document.querySelector('.confirm-pswd').value;
+                            if (passwordMatch) {
+                                document.querySelector('input[type="submit"]').disabled = false;
+                            } else {
+                                document.querySelector('input[type="submit"]').disabled = true;
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+        
+    </div>
+{% endblock %}

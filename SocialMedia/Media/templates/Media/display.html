@@ -1,0 +1,65 @@
+{% load static %}
+{% load static tailwind_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    {% tailwind_css %}
+</head>
+<body class="font-arial bg-gray-100 m-0 p-5">
+
+    <h1 class="text-center text-[30px] text-green-600 font-bold font-sans tracking-wide">All Users</h1>
+    
+    <table class="w-full border-collapse mt-5">
+        <thead>
+            <tr>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">ID</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Username</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">First Name</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Last Name</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Profile Pic</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Bio</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Cover</th>
+                <th class="bg-[#4CAF50] text-white py-3 px-4 text-left">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class=" even:bg-gray-100">
+                <td class="px-3 py-3 text-left border-b border-gray-300">{{ user.id }}</td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">{{ user.username }}</td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">{{ user.first_name }}</td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">{{ user.last_name }}</td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">
+                    {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" alt="Profile Pic" class="max-w-[50px] max-h-[50px] object-cover">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">{{ user.bio }}</td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">
+                    {% if user.cover %}
+                        <img src="{{ user.cover.url }}" alt="Cover" class="max-w-[50px] max-h-[50px] object-cover">
+                    {% else %}
+                        No Cover
+                    {% endif %}
+                </td>
+                <td class="px-3 py-3 text-left border-b border-gray-300">
+                    <form method="POST" action="{% url 'delete_user' user.id %}" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button bg-red-500 p-2 rounded-lg border-red-500 border-2 bg-opacity-40 backdrop-blur-lg text-red-700">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr class=" text-center">
+                <td colspan="8" class="empty-message">No users available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
