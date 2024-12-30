@@ -4,9 +4,9 @@
 
 {% block profile %}
     <div class="profile-view" data-user="{{username.username}}">
-        <div class="cover-image" style="background-image: url(/Media/{{username.cover}})"></div>
-        <div class="profile-image" style="background-image: url(/Media/{{username.profile_pic}})"></div>
-        <div class="profile-details">
+        <div class="h-[210px] bg-cover bg-center bg-no-repeat bg-[#ccd6dd]" style="background-image: url(/Media/{{username.cover}})"></div>
+        <div class="absolute w-[160px] h-[160px] left-[15px] top-[110px] rounded-full border-4 border-white bg-white bg-cover bg-center bg-no-repeat" style="background-image: url(/Media/{{username.profile_pic}})"></div>
+        <div class="p-[15px_20px]">
             <div>
                 {% if user.username == username.username %}
                     <button class="btn btn-outline-success float-right" id="edit-profile-btn">Edit Profile</button>
@@ -16,15 +16,15 @@
                     <button class="btn btn-outline-success float-right" onclick="follow_user(this,'{{username.username}}','edit_page')" id="follow-btn">Follow</button>
                 {% endif %}
             </div>
-            <div class="details-data">
-                <h5>{{username.first_name}} {{username.last_name}}</h5>
-                <div class="grey">@{{username.username}}</div>
-                <div class="bio">
+            <div class="mt-[52px] text-[.92em]">
+                <h5 class="font-bold mb-0">{{username.first_name}} {{username.last_name}}</h5>
+                <div class="text-gray-500">@{{username.username}}</div>
+                <div class="mt-[8px]">
                     {% if username.bio is not None %}
                         {{username.bio}}
                     {% endif %}
                 </div>
-                <div class="grey" style="padding: 8px 0px;">
+                <div class="text-gray-500 py-[8px_0px]">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
                         <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
@@ -35,26 +35,26 @@
                     <strong>
                         {{posts_count}}
                     </strong>
-                    &nbsp;<span class="grey">Posts</span>
+                    &nbsp;<span class="text-gray-500">Posts</span>
                     &ensp;
                     <a href="#">
-                        <strong id="following__count">{{following_count | default:0}}</strong>&nbsp;<span class="grey">Following</span>
+                        <strong id="following__count">{{following_count | default:0}}</strong>&nbsp;<span class="text-gray-500">Following</span>
                     </a>
                     &ensp;
                     <a href="#">
-                        <strong id="follower__count">{{follower_count | default:0}}</strong>&nbsp;<span class="grey">Followers</span>
+                        <strong id="follower__count">{{follower_count | default:0}}</strong>&nbsp;<span class="text-gray-500">Followers</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="space"></div>
+    <div class="my-[2rem]"></div>
 {% endblock %}
 
 {% block emptyprofile %}
     <center>
         <br>
-        <strong style="font-size: 1.2em;">@{{username}} hasn't posted</strong>
-        <div class="grey" style="font-size: .9em;">When they do, their posts will show up here.</div>
+        <strong class="text-[1.2em]">@{{username}} hasn't posted</strong>
+        <div class="text-gray-500 text-[.9em]">When they do, their posts will show up here.</div>
     </center>
 {% endblock %}

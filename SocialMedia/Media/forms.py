@@ -58,7 +58,7 @@ class RegistrationForm(forms.Form):
     confirmation = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]',
+            'class': 'w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#4CAF50] ',
             'placeholder': 'Confirm Password *',
             'autocomplete': 'off',
             'aria-label': 'Confirm Password'
@@ -96,7 +96,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=100,
         widget=forms.TextInput(attrs={
-            'class': 'form-control inp mb-4 usrnm w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#01dd73]',
+            'class': 'form-control inp mb-4 usrnm w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#4CAF50] active:ring-[#4CAF50]',
             'placeholder': 'Username',
             'autocomplete': 'off',
             'autofocus': 'autofocus'
@@ -104,7 +104,7 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'class': 'form-control inp pswd w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#01dd73] mb-7',
+            'class': 'form-control inp pswd w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#4CAF50] active:ring-[#4CAF50] mb-7',
             'placeholder': 'Password',
             'autocomplete': 'off'
         })
