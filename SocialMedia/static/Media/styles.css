@@ -55,7 +55,7 @@ svg{
     padding: 15px;
     list-style: none;
     border-right: .5px solid #e6ecf0;
-    z-index: 100;
+    z-index: 10;
     padding-left: 3%;
     background-color: white;
 }
@@ -243,12 +243,6 @@ svg{
     height: 8px;
     background-color: #e6ecf0;
 }
-/*.main-div > div{
-    margin-top: 10px;
-    max-height: 100vh;
-    overflow: auto;
-}*/
-
 
 
 /********** Profile Section **********/
@@ -338,16 +332,19 @@ svg{
 .dropdown-toggle::after{
     content: none;
 }
-.dropdown-menu{
+.dropdown-menu {
     padding: 0px;
-    overflow: hidden;
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
     border: 0px;
-    position: absolute;
-    top: 0px;
+    top: 8px;
+    left: 0px;
+    transform: translateX(150px) translateY(18px);
     margin: 0px;
-    z-index: 99999;
+    position: absolute;
+    z-index: 9999;
+    margin-right: -100px;
 }
+
 
 .dropdown-item{
     padding-bottom: 13px;
@@ -699,65 +696,6 @@ svg{
     padding-left: 30px;
     padding-right: 30px;
 }
-.small-popup{
-    display: none;
-    position: absolute;
-    top: 200px;
-    left: 37%;
-    width: 23%;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    align-items: center;
-    text-align: center;
-    padding: 25px 20px;
-    overflow: auto;
-    border-radius: 17px;
-    animation-name: small_popup;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-}
-.large-popup{
-    display: none;
-    position: absolute;
-    top: 34px;
-    left: 25%;
-    width: 47.5%;
-    max-height: 90vh;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    padding: 24px 20px 15px 20px;
-    overflow: auto;
-    border-radius: 17px;
-    animation-name: large_popup;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-}
-.large-popup div{
-    display: flex;
-}
-.large-popup form{
-    margin-top: 5px;
-    width: 100%;
-}
-.large-popup textarea{
-    width: 100%;
-    outline: none;
-    border: none;
-}
-.large-popup hr{
-    margin: 0px;
-}
-.large-popup textarea:focus hr{
-    color: #28a745;
-}
-.large-popup .form-action-btns{
-    display: flex;
-    justify-content: space-between;
-}
-.large-popup .float-right{
-    margin-left: 10px;
-}
-
 
 .login-popup{
     display: none;
