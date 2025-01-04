@@ -55,7 +55,7 @@ svg{
     padding: 15px;
     list-style: none;
     border-right: .5px solid #e6ecf0;
-    z-index: 10;
+    z-index: 100;
     padding-left: 3%;
     background-color: white;
 }
@@ -107,6 +107,7 @@ svg{
 .active a{
     color: #28a745 !important;
 }
+
 
 
 .main-div{
@@ -243,6 +244,12 @@ svg{
     height: 8px;
     background-color: #e6ecf0;
 }
+/*.main-div > div{
+    margin-top: 10px;
+    max-height: 100vh;
+    overflow: auto;
+}*/
+
 
 
 /********** Profile Section **********/
@@ -325,26 +332,23 @@ svg{
 .post-main{
     flex: 1;
 }
-.post-Member{
+.post-user{
     display: flex;
     justify-content: space-between;
 }
 .dropdown-toggle::after{
     content: none;
 }
-.dropdown-menu {
+.dropdown-menu{
     padding: 0px;
+    overflow: hidden;
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
     border: 0px;
-    top: 8px;
-    left: 0px;
-    transform: translateX(150px) translateY(18px);
-    margin: 0px;
     position: absolute;
-    z-index: 9999;
-    margin-right: -100px;
+    top: 0px;
+    margin: 0px;
+    z-index: 99999;
 }
-
 
 .dropdown-item{
     padding-bottom: 13px;
@@ -584,7 +588,7 @@ svg{
     overflow: hidden;
     background-color: #f5f8fa;
 }
-.Member-details #Member-name:hover{
+.user-details #user-name:hover{
     text-decoration: underline;
 }
 .suggestion-header{
@@ -593,27 +597,27 @@ svg{
     font-weight: 800;
     border-bottom: .5px solid #e6ecf0;
 }
-.suggestion-Member{
+.suggestion-user{
     display: flex;
     padding: 10px 15px;
     font-size: .9em;
     border-bottom: .5px solid #e6ecf0;
 }
-.suggestion-Member:hover{
+.suggestion-user:hover{
     background-color: #edf0f4;
     cursor: pointer;
     transition-duration: .2s;
 }
-.suggestion-Member  a{
+.suggestion-user  a{
     color: black;
     text-decoration: none;
 }
-.Member-details{
+.user-details{
     flex: 1;
     line-height: 1.1em;
     padding: 5px 0px 7px 0px;
 }
-.suggestion-Member .btn{
+.suggestion-user .btn{
     padding: 0em 1em .09em 1em;
 }
 .suggestion-footer{
@@ -696,6 +700,24 @@ svg{
     padding-left: 30px;
     padding-right: 30px;
 }
+.small-popup{
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 37%;
+    width: 23%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    overflow: auto;
+    border-radius: 17px;
+    animation-name: small_popup;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
 
 .login-popup{
     display: none;

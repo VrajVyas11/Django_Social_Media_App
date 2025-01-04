@@ -27,56 +27,38 @@
                 </div>
             </div>
             {% comment %} Edit post Pop UP {% endcomment %}
-            <div class="large-popup flex-wrap hidden absolute top-8 w-5/12 max-h-[90vh] transform -translate-x-1/2 -translate-y-1/2 bg-white  overflow-auto rounded-lg animate-fadeIn">
-                <div class="flex">
-                    <div>
-                        <div class="small-profilepic bg-cover bg-center" style="background-image: url(/Media/{{user.profile_pic}});"></div>
+            <div class="large-popup bg-white w-5/12 max-h-[90vh] p-6 rounded-lg overflow-auto hidden absolute top-[34px] left-[25%] translate-x-[10%] ">
+                <div class="flex flex-row justify-start items-start">
+                    <div class="flex items-center">
+                        <div class="small-profilepic " style="background-image: url(/Media/{{user.profile_pic}});"></div>
                     </div>
-                    <div class="w-full flex">
+                    <div class="form-area w-full">
                         <form action="{% url 'createpost' %}" method="POST" class="newpost" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <textarea 
-                                name="text" 
-                                autofocus 
-                                placeholder="What's happening?" 
-                                rows="5" 
-                                id="post-text" 
-                                class="w-full outline-none border-none"></textarea>
-                            <input type="hidden" id="img-change" value="false">
-                            <div id="img-div" class="mt-2">
-                                <button id="del-img" type="button" class="flex items-center">
-                                    {% comment %} <img src="Media/Images/close.svg" alt="close" /> {% endcomment %}
-                                    <svg width="1.55em" height="1.55em" viewBox="0 0 24 24" class="r-jwli3a r-4qtqp9 r-yyyyoo r-1q142lx r-50lct3 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1srniue" fill="#fff">
-                                        <g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
-                                        </svg>
+                            <textarea name="text" autofocus placeholder="What's happening?" rows="5" id="post-text" class="w-full outline-none border-none"></textarea>
+                            <input type="hidden" id="img-change" value="false"></input>
+                            <div id='img-div' class="flex items-center">
+                                <button id="del-img" type='button' class="text-white">
+                                    <svg width="1.55em" height="1.55em" viewBox="0 0 24 24" fill="#fff">
+                                        <g>
+                                            <path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path>
+                                        </g>
+                                    </svg>
                                 </button>
-                                <img src="{% static 'Media/Images/spinner.gif' %}" id="spinner" height="70px" class="ml-2">
+                                <img src="{% static 'Media/Images/spinner.gif' %}" id='spinner' class="h-[20px]">
                             </div>
                             <hr class="my-2">
-                            <div class="form-action-btns flex justify-between mt-4">
+                            <div class="form-action-btns flex justify-between">
                                 <div>
-                                    <input 
-                                        name="picture" 
-                                        accept="image/jpeg,image/png,image/webp,image/gif" 
-                                        type="file" 
-                                        class="hidden" 
-                                        id="insert-img" 
-                                        data-focusable="true">
-                                    <label for="insert-img" class="icon-btn form-icon-btn inline-flex items-center">
-                                        <img src="\static\Media\images\photo.svg" alt="photo" /> 
+                                    <input name='picture' accept="image/jpeg,image/png,image/webp,image/gif" type="file" style="display: none;" id="insert-img">
+                                    <label for="insert-img" class="flex items-center gap-2 cursor-pointer">
+                                        <img src="{% static '/Media/Images/photo.svg' %}" alt="Photo">
                                         <span class="text-sm">&nbsp;Photo</span>
                                     </label>
                                 </div>
                                 <div>
-                                    <button 
-                                        class="btn btn-light float-right cancel-post bg-gray-200 text-gray-800 px-4 py-2 rounded-md" 
-                                        type="button" 
-                                        onclick="remove_popup()">Cancel</button>
-                                    <input 
-                                        type="submit" 
-                                        class="btn btn-success float-right submit-btn bg-green-600 text-white px-4 py-2 rounded-md ml-2" 
-                                        value="&nbsp;Post&nbsp;" 
-                                        disabled>
+                                    <button class="btn btn-light float-right cancel-post" type="button" onclick="remove_popup()">Cancel</button>
+                                    <input type="submit" class="btn btn-success float-right submit-btn" value="&nbsp;Post&nbsp;" disabled>
                                 </div>
                             </div>
                         </form>
@@ -90,7 +72,7 @@
                 </div>
                 <center>
                     <div class="icon-div">
-                        <img src="{% static 'Media/Images/heartFilled.svg' %}" alt="Liked" style="width: 1.1em; height: 1.1em;">
+                        <img src="{% static 'Media\images\heartFilled.svg' %}" alt="Liked" style="width: 1.1em; height: 1.1em;">
                     </div>
                     <div class="main_text-div">
                         <h2></h2>
@@ -217,60 +199,57 @@
                         </div>
                     </form>
                 </nav>
-                <div class='right-div-content'>
-                    <div class="space" style="background-color: white;"></div>
+                <div class="h-[92.5vh] overflow-auto px-[1.5vw]">
+                    <div class="bg-white"></div>
                     {% if user.is_authenticated %}
-                        <div class="suggestion-box">
-                            <div class="suggestion-header">
-                                You might know
-                            </div>
-                            {% for suggestion in suggestions %}
-                                <div class="suggestion-user">
-                                    <div>
-                                        <a href="{% url 'profile' suggestion.username %}">
-                                            <div class="small-profilepic" style="background-image: url(/Media/{{suggestion.profile_pic}})"></div>
-                                        </a>
-                                    </div>
-                                    <div class="user-details">
-                                        <a href="{% url 'profile' suggestion.username %}">
-                                            <div id="user-name">
-                                                
-                                                <strong>
-                                                    {{suggestion.first_name}} {{suggestion.last_name}}
-                                                </strong>
-                                            </div>
-                                            <div class="grey">@{{suggestion.username}}</div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-outline-success" type="button" onclick="follow_user(this,'{{suggestion.username}}','suggestion')">Follow</button>
-                                    </div>
-                                </div>
-                            {% empty %}
-                                    <div style="text-align: center; border-bottom: .5px solid #e6ecf0; padding: 10px 15px;">
-                                        <span class="grey" style="font-size: .9em;">No suggestions available.</span>
-                                    </div>
-                            {% endfor %}
-                            <div class="suggestion-footer">
-                                <a href="#">Show more</a>
-                            </div>
+                      <div class="rounded-[15px] overflow-hidden bg-[#f5f8fa]">
+                        <div class="px-[15px] py-[13px] font-extrabold border-b-[0.5px] border-[#e6ecf0]">
+                          You might know
                         </div>
+                        {% for suggestion in suggestions %}
+                          <div class="flex items-center px-[15px] py-[10px] text-sm border-b-[0.5px] border-[#e6ecf0] hover:bg-[#edf0f4] cursor-pointer transition duration-200">
+                            <div>
+                              <a href="{% url 'profile' suggestion.username %}">
+                                <div class="w-[40px] h-[40px] bg-center bg-cover rounded-full" style="background-image: url(/Media/{{suggestion.profile_pic}})"></div>
+                              </a>
+                            </div>
+                            <div class="flex-1 ml-3">
+                              <a href="{% url 'profile' suggestion.username %}" class="text-black no-underline">
+                                <div class="font-bold hover:underline">{{suggestion.first_name}} {{suggestion.last_name}}</div>
+                                <div class="text-gray-500">@{{suggestion.username}}</div>
+                              </a>
+                            </div>
+                            <div>
+                              <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition" type="button" onclick="follow_user(this, '{{suggestion.username}}', 'suggestion')">Follow</button>
+                            </div>
+                          </div>
+                        {% empty %}
+                          <div class="text-center border-b-[0.5px] border-[#e6ecf0] px-[15px] py-[10px] text-gray-500 text-sm">
+                            No suggestions available.
+                          </div>
+                        {% endfor %}
+                        <div class="px-[15px] py-[13px]">
+                          <a href="#" class="no-underline">Show more</a>
+                        </div>
+                      </div>
                     {% else %}
-                        <div class="guest-box">
-                            <center>
-                                <div class="guest-header">
-                                    <h5>New to Media?</h5>
-                                </div>
-                                <div class="grey guest-content">
-                                    Sign up now to get connected with people you know.
-                                </div>
-                                <div class="guest-btn">
-                                    <button class="btn btn-success btn-block" type="button" onclick="goto_register()">Sign Up</button>
-                                </div>
-                            </center>
-                        </div>
+                      <div class="rounded-[15px]  overflow-hidden bg-[#f5f8fa]">
+                        <center class="flex px-2 flex-col justify-between gap-3">
+                          <div>
+                            <h5 class=" text-xl font-bold mt-2">New to Media?</h5>
+                          </div>
+                          <div class="text-gray-500 text-sm">
+                            Sign up now to get connected with people you know.
+                          </div>
+                          <div class="mb-3">
+                            <button class="w-fit min-w-60 px-7 py-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition" type="button" onclick="goto_register()">Sign Up</button>
+                          </div>
+                        </center>
+                      </div>
                     {% endif %}
-                </div>
+                  </div>
+                  
+            </div>
             </div>
         </div>
 

@@ -327,67 +327,81 @@ function unsave_post(element) {
 
 
 function follow_user(element, username, origin) {
-    if(document.querySelector('#user_is_authenticated').value === 'False') {
+    if (document.querySelector('#user_is_authenticated').value === 'False') {
         login_popup('follow');
         return false;
     }
-    fetch('/'+username+'/follow', {
-        method: 'PUT'
-    })
-    .then(() => {
-        if(origin === 'suggestion') {
-            element.parentElement.innerHTML = `<button class="btn btn-success" type="button" onclick="unfollow_user(this,'${username}','suggestion')">Following</button>`;
-        }
-        else if(origin === 'edit_page') {
-            element.parentElement.innerHTML = `<button class="btn btn-success float-right" onclick="unfollow_user(this,'${username}','edit_page')" id="following-btn">Following</button>`;
-        }
-        else if(origin === 'dropdown') {
-            ////////////////////////////////////////////////////////////////////////////////////////////
-        }
+    fetch(`/${username}/follow`, { method: 'PUT' })
+        .then(() => {
+            if (origin === 'suggestion') {
+                element.parentElement.innerHTML = `
+                    <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition" 
+                        type="button" 
+                        onclick="unfollow_user(this,'${username}','suggestion')">
+                        Following
+                    </button>`;
+            } else if (origin === 'edit_page') {
+                element.parentElement.innerHTML = `
+                    <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition float-right" 
+                        type="button" 
+                        onclick="unfollow_user(this,'${username}','edit_page')" 
+                        id="following-btn">
+                        Following
+                    </button>`;
+            } else if (origin === 'dropdown') {
+                // Additional handling for dropdown case (if required)
+            }
 
-        if(document.querySelector('.body').dataset.page === 'profile') {
-            if(document.querySelector('.profile-view').dataset.Member === username) {
-                document.querySelector('#follower__count').innerHTML++;
+            if (document.querySelector('.body').dataset.page === 'profile') {
+                if (document.querySelector('.profile-view').dataset.Member === username) {
+                    document.querySelector('#follower__count').innerHTML++;
+                }
             }
-        }
-        if(document.querySelector('.body').dataset.page === 'profile') {
-            if(document.querySelector('.profile-view').dataset.Member === document.querySelector('#user_is_authenticated').dataset.username) {
-                document.querySelector('#following__count').innerHTML++;
+            if (document.querySelector('.body').dataset.page === 'profile') {
+                if (document.querySelector('.profile-view').dataset.Member === document.querySelector('#user_is_authenticated').dataset.username) {
+                    document.querySelector('#following__count').innerHTML++;
+                }
             }
-        }
-    });
+        });
 }
 
 function unfollow_user(element, username, origin) {
-    if(document.querySelector('#user_is_authenticated').value === 'False') {
+    if (document.querySelector('#user_is_authenticated').value === 'False') {
         login_popup('follow');
         return false;
     }
-    fetch('/'+username+'/unfollow', {
-        method: 'PUT'
-    })
-    .then(() => {
-        if(origin === 'suggestion') {
-            element.parentElement.innerHTML = `<button class="btn btn-outline-success" type="button" onclick="follow_user(this,'${username}','suggestion')">Follow</button>`;
-        }
-        else if(origin === 'edit_page') {
-            element.parentElement.innerHTML = `<button class="btn btn-outline-success float-right" onclick="follow_user(this,'${username}','edit_page')" id="follow-btn">Follow</button>`;
-        }
-        else if(origin === 'dropdown') {
-            ///////////////////////////////////////////////////////////////////////////////////////////
-        }
+    fetch(`/${username}/unfollow`, { method: 'PUT' })
+        .then(() => {
+            if (origin === 'suggestion') {
+                element.parentElement.innerHTML = `
+                    <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition" 
+                        type="button" 
+                        onclick="follow_user(this,'${username}','suggestion')">
+                        Follow
+                    </button>`;
+            } else if (origin === 'edit_page') {
+                element.parentElement.innerHTML = `
+                    <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition float-right" 
+                        type="button" 
+                        onclick="follow_user(this,'${username}','edit_page')" 
+                        id="follow-btn">
+                        Follow
+                    </button>`;
+            } else if (origin === 'dropdown') {
+                // Additional handling for dropdown case (if required)
+            }
 
-        if(document.querySelector('.body').dataset.page === 'profile') {
-            if(document.querySelector('.profile-view').dataset.Member === username) {
-                document.querySelector('#follower__count').innerHTML--;
+            if (document.querySelector('.body').dataset.page === 'profile') {
+                if (document.querySelector('.profile-view').dataset.Member === username) {
+                    document.querySelector('#follower__count').innerHTML--;
+                }
             }
-        }
-        if(document.querySelector('.body').dataset.page === 'profile') {
-            if(document.querySelector('.profile-view').dataset.Member === document.querySelector('#user_is_authenticated').dataset.username) {
-                document.querySelector('#following__count').innerHTML--;
+            if (document.querySelector('.body').dataset.page === 'profile') {
+                if (document.querySelector('.profile-view').dataset.Member === document.querySelector('#user_is_authenticated').dataset.username) {
+                    document.querySelector('#following__count').innerHTML--;
+                }
             }
-        }
-    });
+        });
 }
 
 
