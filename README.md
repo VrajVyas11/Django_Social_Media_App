@@ -16,22 +16,21 @@ A Django-based social media app that allows users to register, log in, create po
   <tr>
     <td><img src="./livedemoimages/1.png" width="100%" /></td>
     <td><img src="./livedemoimages/2.png" width="100%" /></td>
-  </tr>
-  <tr>
     <td><img src="./livedemoimages/3.png" width="100%" /></td>
-    <td><img src="./livedemoimages/4.png" width="100%" /></td>
   </tr>
   <tr>
     <td><img src="./livedemoimages/5.png" width="100%" /></td>
     <td><img src="./livedemoimages/6.png" width="100%" /></td>
+    <td><img src="./livedemoimages/4.png" width="100%" /></td>
   </tr>
   <tr>
     <td><img src="./livedemoimages/7.png" width="100%" /></td>
     <td><img src="./livedemoimages/8.png" width="100%" /></td>
+    <td><img src="./livedemoimages/9.png" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="./livedemoimages/9.png" width="100%" /></td>
     <td><img src="./livedemoimages/10.png" width="100%" /></td>
+    <td><img src="./livedemoimages/11.png" width="100%" /></td>
   </tr>
 </table>
 
