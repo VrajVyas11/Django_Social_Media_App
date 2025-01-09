@@ -9,26 +9,41 @@ from django.core.paginator import Paginator
 import json
 from .forms import RegistrationForm,LoginForm
 from .models import *
+# from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator
+from .models import Post, Follower  
 
 
 def index(request):
+    query = request.GET.get('query', '').strip()  # Get the query parameter or default to empty string
+    page_number = request.GET.get('page', 1)  # Get the page number or default to 1
+
     all_posts = Post.objects.all().order_by('-date_created')
     paginator = Paginator(all_posts, 10)
-    page_number = request.GET.get('page')
-    if page_number == None:
-        page_number = 1
     posts = paginator.get_page(page_number)
-    followings = []
-    suggestions = []
-    if request.user.is_authenticated:
+
+    suggestions = []  # Initialize suggestions as an empty list
+    if query:  # Check if there is a query parameter
+        if query == "all":
+            suggestions = User.objects.exclude(username=request.user.username).order_by("?")
+            query=""
+        else:
+            suggestions = User.objects.filter(first_name__icontains=query)
+    elif request.user.is_authenticated:
+        # Fetch suggestions only if the user is authenticated
         followings = Follower.objects.filter(followers=request.user).values_list('user', flat=True)
         suggestions = User.objects.exclude(pk__in=followings).exclude(username=request.user.username).order_by("?")[:6]
+
     return render(request, "Media/index.html", {
         "posts": posts,
         "suggestions": suggestions,
         "page": "all_posts",
-        'profile': False
+        'profile': False,
+        "query": query,  # Include query in context to preserve the search term in the form
     })
+
+
+
 
 
 def login_view(request):

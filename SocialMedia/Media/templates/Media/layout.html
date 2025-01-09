@@ -190,66 +190,72 @@
 
             <div class="right-div">
                 <nav class="head">
-                    <form action="#">
+                    <form action="{% url 'index' %}" method="GET">
+                        {% csrf_token %}
                         <div class="search-div">
                             <div>
-                                    <img src="{% static 'Media/Images/search.svg' %}" alt="search">
+                                <img src="{% static 'Media/Images/search.svg' %}" alt="search">
                             </div>
-                            <input type="text" name="query" id="search-box" placeholder="Search Media">
+                            <input type="text" name="query" id="search-box" placeholder="Search Media" value="{{ query }}">
                         </div>
                     </form>
                 </nav>
+                
                 <div class="h-[92.5vh] overflow-auto px-[1.5vw]">
                     <div class="bg-white"></div>
                     {% if user.is_authenticated %}
-                      <div class="rounded-[15px] overflow-hidden bg-[#f5f8fa]">
+                    <div class="rounded-[15px] overflow-hidden bg-[#f5f8fa]">
                         <div class="px-[15px] py-[13px] font-extrabold border-b-[0.5px] border-[#e6ecf0]">
-                          You might know
+                            {% if query %} Search Result {% else %} More People {% endif %}
                         </div>
-                        {% for suggestion in suggestions %}
-                          <div class="flex items-center px-[15px] py-[10px] text-sm border-b-[0.5px] border-[#e6ecf0] hover:bg-[#edf0f4] cursor-pointer transition duration-200">
-                            <div>
-                              <a href="{% url 'profile' suggestion.username %}">
-                                <div class="w-[40px] h-[40px] bg-center bg-cover rounded-full" style="background-image: url(/Media/{{suggestion.profile_pic}})"></div>
-                              </a>
+                        {% if suggestions %}
+                            {% for suggestion in suggestions %}
+                            <div class="flex items-center px-[15px] py-[10px] text-sm border-b-[0.5px] border-[#e6ecf0] hover:bg-[#edf0f4] cursor-pointer transition duration-200">
+                                <div>
+                                    <a href="{% url 'profile' suggestion.username %}">
+                                        <div class="w-[40px] h-[40px] bg-center bg-cover rounded-full" style="background-image: url(/Media/{{ suggestion.profile_pic }})"></div>
+                                    </a>
+                                </div>
+                                <div class="flex-1 ml-3">
+                                    <a href="{% url 'profile' suggestion.username %}" class="text-black no-underline">
+                                        <div class="font-bold hover:underline">{{ suggestion.first_name }} {{ suggestion.last_name }}</div>
+                                        <div class="text-gray-500">@{{ suggestion.username }}</div>
+                                    </a>
+                                </div>
+                                <div>
+                                    <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition" type="button" onclick="follow_user(this, '{{ suggestion.username }}', 'suggestion')">Follow</button>
+                                </div>
                             </div>
-                            <div class="flex-1 ml-3">
-                              <a href="{% url 'profile' suggestion.username %}" class="text-black no-underline">
-                                <div class="font-bold hover:underline">{{suggestion.first_name}} {{suggestion.last_name}}</div>
-                                <div class="text-gray-500">@{{suggestion.username}}</div>
-                              </a>
-                            </div>
-                            <div>
-                              <button class="px-4 py-[0.25em] border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white transition" type="button" onclick="follow_user(this, '{{suggestion.username}}', 'suggestion')">Follow</button>
-                            </div>
-                          </div>
-                        {% empty %}
-                          <div class="text-center border-b-[0.5px] border-[#e6ecf0] px-[15px] py-[10px] text-gray-500 text-sm">
-                            No suggestions available.
-                          </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                        <div class="text-center border-b-[0.5px] border-[#e6ecf0] px-[15px] py-[10px] text-gray-500 text-sm">
+                            No matching users found.
+                        </div>
+                        {% endif %}
                         <div class="px-[15px] py-[13px]">
-                          <a href="#" class="no-underline">Show more</a>
+                            <a href="{% url 'index' %}?query=all" class="no-underline">Show more</a>
                         </div>
-                      </div>
-                    {% else %}
-                      <div class="rounded-[15px]  overflow-hidden bg-[#f5f8fa]">
+                    </div>
+                {% else %}
+                    <div class="rounded-[15px] overflow-hidden bg-[#f5f8fa]">
                         <center class="flex px-2 flex-col justify-between gap-3">
-                          <div>
-                            <h5 class=" text-xl font-bold mt-2">New to Media?</h5>
-                          </div>
-                          <div class="text-gray-500 text-sm">
-                            Sign up now to get connected with people you know.
-                          </div>
-                          <div class="mb-3">
-                            <button class="w-fit min-w-60 px-7 py-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition" type="button" onclick="goto_register()">Sign Up</button>
-                          </div>
+                            <div>
+                                <h5 class="text-xl font-bold mt-2">New to Media?</h5>
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                                Sign up now to get connected with people you know.
+                            </div>
+                            <div class="mb-3">
+                                <button class="w-fit min-w-60 px-7 py-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition" type="button" onclick="goto_register()">Sign Up</button>
+                            </div>
                         </center>
-                      </div>
-                    {% endif %}
-                  </div>
-                  
+                    </div>
+                {% endif %}
+                
+                </div>
             </div>
+            
+            
             </div>
         </div>
 
