@@ -45,8 +45,7 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <img src="{% static 'Media/Images/spinner.gif' %}" id='spinner' class="h-[20px]">
-                            </div>
+                                <img src="{% static 'Media/Images/spinner.gif' %}" id="spinner" class="h-[50px] w-auto ">                            </div>
                             <hr class="my-2">
                             <div class="form-action-btns flex justify-between">
                                 <div>
@@ -193,8 +192,8 @@
                     <form action="{% url 'index' %}" method="GET">
                         {% csrf_token %}
                         <div class="search-div">
-                            <div>
-                                <img src="{% static 'Media/Images/search.svg' %}" alt="search">
+                            <div class="mt-1">
+                                <img  src="{% static 'Media/Images/search.svg' %}" alt="search">
                             </div>
                             <input type="text" name="query" id="search-box" placeholder="Search Media" value="{{ query }}">
                         </div>

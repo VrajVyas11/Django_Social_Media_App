@@ -982,10 +982,6 @@ select {
   height: 160px;
 }
 
-.h-\[20px\] {
-  height: 20px;
-}
-
 .h-\[210px\] {
   height: 210px;
 }
@@ -996,6 +992,14 @@ select {
 
 .h-\[5\.7vh\] {
   height: 5.7vh;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[70px\] {
+  height: 70px;
 }
 
 .h-\[80px\] {
@@ -1064,6 +1068,10 @@ select {
 
 .w-\[95\%\] {
   width: 95%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-fit {
