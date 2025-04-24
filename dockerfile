@@ -36,4 +36,4 @@ ENV PATH=/root/.local/bin:$PATH
 ENV PYTHONUNBUFFERED=1
 
 # Run migrations and start Gunicorn
-CMD ["sh", "-c", "python manage.py migrate && gunicorn 04_Social_Media_App/SocialMedia/SocialMedia/wsgi.py:application --bind=0.0.0.0:10000"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn SocialMedia/SocialMedia/wsgi.py:application --bind=0.0.0.0:10000"]
